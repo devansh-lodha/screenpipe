@@ -34,11 +34,14 @@ jobs:
       - name: Sync with Upstream
         if: ${{ github.event.inputs.sync_upstream == 'true' || github.event_name == 'schedule' }}
         run: |
+          cp scripts/apply-fork-patches.js /tmp/apply-fork-patches.js
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git remote add upstream https://github.com/screenpipe/screenpipe.git || true
           git fetch upstream main
           git reset --hard upstream/main
+          mkdir -p scripts
+          cp /tmp/apply-fork-patches.js scripts/apply-fork-patches.js
 
       - name: Install System Dependencies
         run: brew install cmake
