@@ -80,6 +80,8 @@ for (const configName of ["tauri.conf.json", "tauri.prod.conf.json"]) {
   );
   if (fs.existsSync(configPath)) {
     const json = JSON.parse(fs.readFileSync(configPath, "utf8"));
+    json.bundle = json.bundle || {};
+    json.bundle.createUpdaterArtifacts = true;
     json.plugins = json.plugins || {};
     json.plugins.updater = {
       active: true,

@@ -91,9 +91,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
           TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
         with:
           projectPath: apps/screenpipe-app-tauri
-          configPath: src-tauri/tauri.conf.json
+          configPath: src-tauri/tauri.prod.conf.json
           tagName: latest
           releaseName: "Latest Auto Release"
           releaseBody: "Automated Screenpipe macOS M-Series build with paywall bypass and updater."
